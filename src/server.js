@@ -2,6 +2,7 @@ const express = require("express")
 
 const  {db}  = require("./models/db")
 const linksRoute  = require("./routes/links")
+const redirectionroute = require("./routes/redirection")
 
 
 
@@ -14,6 +15,9 @@ db.sync()
 
 const app = express();
 
+app.use(express.json())
+
+
 app.get("/", (req, res) => {
     let user = req.query.name;
     if(!user) user = "World";
@@ -22,6 +26,7 @@ app.get("/", (req, res) => {
 })
 
 app.use("/api/links", linksRoute)
+app.use("/", redirectionroute)
 
 app.listen(4445, () => {
     console.log("server listening on http://localhost:4445")
