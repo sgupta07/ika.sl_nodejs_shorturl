@@ -24,7 +24,7 @@ route.post('/', async (req, res) => {
     const code = req.body.code
 
     //todo: validate link must exist
-
+console.log(req.body.link)
     if (!code) {
         const url = await createRandomShortCode(link)
         return res.json(url)

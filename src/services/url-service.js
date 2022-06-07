@@ -3,7 +3,7 @@ const {int2redix64, redix64toint} = require('../services/redix64-service')
  
 //note: database and network operation can be on background thread although node is signle thread
 async function createRandomShortCode(link) {
-    const genCode = parseInt(Math.random() * 999999999999)
+    const genCode = parseInt(Math.random() * 99999999999)
 
     const exist = await URLs.findOne({
         where: {
@@ -49,15 +49,15 @@ async function createCustomShortCode(link, code) {
 
 }
 
-function findLongUrl(code){
-    const id = redix64toint(code)
-
-    return await  URLs.findOne({
-        where: {
-            id : id
-        }
-    })
-}
+async function findLongUrl(code) {
+    const id = redix64toint(code);
+    
+    return await URLs.findOne({
+      where: {
+        id: id,
+      },
+    });
+  }
 
 module.exports = {
     createCustomShortCode,

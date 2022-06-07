@@ -28,6 +28,7 @@ app.get("/", (req, res) => {
 app.use("/api/links", linksRoute)
 app.use("/", redirectionroute)
 
+
 app.listen(4445, () => {
     console.log("server listening on http://localhost:4445")
 })
